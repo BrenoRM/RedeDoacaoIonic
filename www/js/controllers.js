@@ -88,10 +88,12 @@ function ($scope, $stateParams) {
             }
             else{
                 valor = JSON.parse(valor);
-                console.log(valor);
                 $scope.instituicaoSelecionadaObject = valor
             }
         };
+        $scope.realizarDoacao = function(item){
+            console.log(item);
+        }
         
 }])
    
