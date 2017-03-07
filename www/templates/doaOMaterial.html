@@ -11,21 +11,25 @@
         </select>
       </div>
     </div>
-    <h1 id="doaOMaterial-heading2" style="color:#000000;font-weight:600;" ng-if="instituicaoSelecionadaObject">Instituição escolhida: {{instituicaoSelecionadaObject.nome}}</h1>
-    <h1 id="doaOMaterial-heading2" style="color:#000000;font-weight:600;" ng-if="!instituicaoSelecionadaObject">Instituição escolhida: {{instituicaoSelecionadaObject.nome}}</h1>
+    <h3 id="doaOMaterial-heading2" style="color:#000000;font-weight:600;" ng-if="instituicaoSelecionadaObject">Instituição escolhida: {{instituicaoSelecionadaObject.nome}}</h1>
+    <h3 id="doaOMaterial-heading2" style="color:#000000;font-weight:600;" ng-if="!instituicaoSelecionadaObject">Instituição escolhida: {{instituicaoSelecionadaObject.nome}}</h1>
     <ion-list ng-if="instituicaoSelecionadaObject">
       <ion-item>Endereço: {{instituicaoSelecionadaObject.endereco}}</ion-item>
       <ion-item ng-repeat="tel in instituicaoSelecionadaObject.telefones">{{tel}}</ion-item>
 
     </ion-list>
     <div class="spacer" style="width: 300px; height: 0px;"></div>
-    <h3 id="doaOMaterial-heading3" style="color:#000000;font-weight:400;">Estoque</h3>
+    <h3 id="doaOMaterial-heading3" style="color:#000000;font-weight:400;">Itens Necessitados</h3>
     <ion-list id="doaOMaterial-list2">
-      <ion-item>Item
-        <span class="item-note">Quantidade em estoque</span>
+      <ion-item ng-repeat="item in instituicaoSelecionadaObject.itensNecessitados" ng-if="instituicaoSelecionadaObject">
+        <label>Item: {{item.nome}}</label><br>
+        <label>Quantidade Necessitada: {{item.quantidade}} {{item.unidade}}</label><br>
+        <label>Urgência: <i class="icon ion-star assertive"></i><i class="icon ion-star assertive" ng-if="item.urgencia >= 2"></i><i class="icon ion-star assertive" ng-if="item.urgencia >= 3"></i><i class="icon ion-star assertive" ng-if="item.urgencia >= 4"></i><i class="icon ion-star assertive" ng-if="item.urgencia >= 5"></i></label><br>
+        <button class="button button-balanced button-block" on-tap="realizarDoacao(item)">
+          <i class="icon ion-heart"> Doar!</i>
+        </button>
       </ion-item>
     </ion-list>
     <div class="spacer" style="width: 300px; height: 36px;"></div>
-    <button id="doaOMaterial-button8" class="button button-positive  button-block">Tap me!</button>
   </ion-content>
 </ion-view>
