@@ -1,0 +1,54 @@
+<ion-modal-view>
+    <ion-header-bar class="bar bar-header bar-balanced">
+        <button class=" button button-assertive" on-tap="closeModal()"> 
+            <i class="icon ion-close-circled"></i>
+        </button>
+        <h1 class="title">Doação de Materiais</h1>
+    </ion-header-bar>
+    
+    <ion-content>
+        <!--
+        <div class="list" style="">
+            <span class="item item-icon-left">
+                <i class="icon ion-cube" style="font-size: 100%"> Item Selecionado: {{itemSelecionado.nome}} </i>
+            </span>
+            <span class="item item-icon-left">
+                <i class="icon ion-heart" style="font-size: 100%"> Quantidade Necessitada: {{itemSelecionado.quantidade}} {{itemSelecionado.unidade}}</i>
+            </span>
+        </div>
+        -->
+        <div class="list">
+            <div class="item item-divider">
+                Doação Referente a Instituiçao: <br> {{instituicaoSelecionadaObject.nome}}
+            </div>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Item Escolhido</span>
+                <input type="text" readonly value="{{itemSelecionado.nome}}">
+            </label>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Quantidade Necessitada</span>
+                <input type="text" readonly value="{{itemSelecionado.quantidade + itemSelecionado.unidade}}">
+            </label>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Urgência</span><br>
+                <i class="icon ion-star assertive"></i><i class="icon ion-star assertive" ng-if="itemSelecionado.urgencia >= 2"></i><i class="icon ion-star assertive" ng-if="itemSelecionado.urgencia >= 3"></i><i class="icon ion-star assertive" ng-if="itemSelecionado.urgencia >= 4"></i><i class="icon ion-star assertive" ng-if="itemSelecionado.urgencia >= 5"></i>
+            </label>
+            <div class="item item-divider">
+                Escolha os atributos de sua Doação
+            </div>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Quantidade a ser doada</span>
+                <input type="number" min="0" ng-model="doacao.quantidade">
+            </label>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Forma de Entrega</span>
+                <ion-list>
+                    <ion-radio ng-model="doacao.formaDeEntrega" ng-value="entregador">Preciso que a Instituição busque</ion-radio>
+                    <ion-radio ng-model="doacao.formaDeEntrega" ng-value="iraEntregar">Eu irei entregar na Instituição</ion-radio>
+                </ion-list>
+            </label>
+            <button class="button button-block button-energized" on-tap="">Realizar Doação!</button>
+        </div>
+    </ion-content>
+
+</ion-modal-view>
