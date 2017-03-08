@@ -38,16 +38,43 @@
             </div>
             <label class="item item-input item-stacked-label">
                 <span class="input-label">Quantidade a ser doada</span>
-                <input type="number" min="0" ng-model="doacao.quantidade">
+                <input type="number" min="0" ng-model="doacao.quantidade" required>
             </label>
             <label class="item item-input item-stacked-label">
                 <span class="input-label">Forma de Entrega</span>
                 <ion-list>
-                    <ion-radio ng-model="doacao.formaDeEntrega" ng-value="entregador">Preciso que a Instituição busque</ion-radio>
-                    <ion-radio ng-model="doacao.formaDeEntrega" ng-value="iraEntregar">Eu irei entregar na Instituição</ion-radio>
+                    <ion-radio ng-model="doacao.entrega.formaDeEntrega" ng-value="entregador" on-tap="entregador()">Preciso que a Instituição busque</ion-radio>
+                    <ion-radio ng-model="doacao.entrega.formaDeEntrega" ng-value="iraEntregar" on-tap="irDeixar()">Eu irei entregar na Instituição</ion-radio>
                 </ion-list>
             </label>
-            <button class="button button-block button-energized" on-tap="">Realizar Doação!</button>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Selecione o dia de sua Entrega</span>
+                <input type="date" placeholder="DD/MM/AAAA" ng-model="doacao.entrega.dataDaEntrega" required>
+            </label>
+            <label class="item item-input item-stacked-label">
+                <span class="input-label">Selecione a hora de sua Entrega</span>
+                <input type="time" placeholder="HH:MM" ng-model="doacao.entrega.horarioDaEntrega" required>
+            </label>
+            <label class="item item-input item-stacked-label" ng-if='entregadorFlag'>
+                <span class="input-label">Deseja que a instituição busque no endereço atual?</span>
+                <input type="text" placeholder="teste">
+            </label>
+            <label class="item item-input item-stacked-label" ng-if='!entregadorFlag'>
+                <span class="input-label">Deseja visualizar uma rota de entrega?</span><br>
+                <label class="toggle" ng-if="!entregadorFlag" on-tap="visualizarRota()">
+                    <input type="checkbox">
+                    <div class="track">
+                        <div class="handle"></div>
+                    </div>
+                </label>
+            </label>
+            <div id="map" lat="-23.639492" lng="133.709107" zoom="8" map ng-if="rota"
+            style="width:90%;
+            height:400px;
+            margin:10px auto;
+            box-shadow:0 3px 25px black;">
+            </div>
+            <button class="button button-block button-energized" on-tap="salvarDadosDoacao()">Realizar Doação!</button>
         </div>
     </ion-content>
 
